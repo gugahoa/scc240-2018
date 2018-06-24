@@ -1,9 +1,9 @@
 package br.usp.icmc.gustavoaguiar.controllers;
 
-import br.usp.icmc.gustavoaguiar.terceirizados.EmpresaFantasiaEntity;
-import br.usp.icmc.gustavoaguiar.terceirizados.EmpresaFantasiaService;
+import br.usp.icmc.gustavoaguiar.library.ResourceNotFound;
+import br.usp.icmc.gustavoaguiar.empresa.fantasia.EmpresaFantasiaEntity;
+import br.usp.icmc.gustavoaguiar.empresa.fantasia.EmpresaFantasiaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,7 +28,7 @@ public class EmpresaFantasiaController {
     @DeleteMapping("/{cnpj}")
     public ResponseEntity delete(@PathVariable("cnpj") String cnpj) {
         if (!empresaFantasiaService.delete(cnpj)) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            throw new ResourceNotFound("Empresa de Fantasia not found");
         }
         return ResponseEntity.ok().build();
     }
@@ -37,7 +37,7 @@ public class EmpresaFantasiaController {
     public ResponseEntity update(@PathVariable("cnpj") String cnpj, @RequestBody EmpresaFantasiaEntity empresaFantasiaEntity) {
         empresaFantasiaEntity.setCnpj(cnpj);
         if (!empresaFantasiaService.update(empresaFantasiaEntity)) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            throw new ResourceNotFound("Empresa de Fantasia not found");
         }
 
         return ResponseEntity.ok().build();
