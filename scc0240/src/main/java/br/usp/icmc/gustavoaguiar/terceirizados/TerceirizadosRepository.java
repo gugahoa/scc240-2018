@@ -21,12 +21,12 @@ public class TerceirizadosRepository extends AbstractRepository<TerceirizadosEnt
         return query(GET_TERCEIRIZADO, ImmutableMap.of("cnpj", cnpj));
     }
 
-    private final String UPDATE_TERCEIRZADO = "UPDATE terceirzados SET contato = :contaot, tipo = :tipo WHERE cnpj = :cnpj";
+    private final String UPDATE_TERCEIRZADO = "UPDATE terceirizados SET contato = :contato, tipo = :tipo WHERE cnpj = :cnpj";
     public boolean update(TerceirizadosEntity terceirizadosEntity) {
         return update(UPDATE_TERCEIRZADO, terceirizadosEntity);
     }
 
-    private final String DELETE_TERCEIRZADO ="DELETE FROM terceirzados WHERE cnpj = :cnpj";
+    private final String DELETE_TERCEIRZADO ="DELETE FROM terceirizados WHERE cnpj = :cnpj";
     public boolean delete(String cnpj) {
         return update(DELETE_TERCEIRZADO, ImmutableMap.of("cnpj", cnpj)) == 1;
     }
