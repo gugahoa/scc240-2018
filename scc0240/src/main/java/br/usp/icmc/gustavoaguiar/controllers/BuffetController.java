@@ -2,6 +2,7 @@ package br.usp.icmc.gustavoaguiar.controllers;
 
 import br.usp.icmc.gustavoaguiar.buffet.BuffetEntity;
 import br.usp.icmc.gustavoaguiar.buffet.BuffetService;
+import br.usp.icmc.gustavoaguiar.library.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +46,14 @@ public class BuffetController {
     @GetMapping("/{data}")
     public BuffetEntity get(@PathVariable("data") Timestamp data) {
         return buffetService.get(data);
+    }
+
+    @PostMapping("/{data}/contratar/{banda}")
+    public ResponseEntity hire_banda(@PathVariable("data") Timestamp buffet, @PathVariable("banda") String banda) {
+        if (!buffetService.hireBanda(buffet, banda)) {
+            throw new ResourceNotFound("Banda or Festa not found");
+        }
+
+        return ResponseEntity.ok().build();
     }
 }

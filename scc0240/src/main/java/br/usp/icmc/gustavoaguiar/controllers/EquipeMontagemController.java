@@ -1,7 +1,7 @@
 package br.usp.icmc.gustavoaguiar.controllers;
 
-import br.usp.icmc.gustavoaguiar.equipe.animacao.EquipeAnimacaoEntity;
-import br.usp.icmc.gustavoaguiar.equipe.animacao.EquipeAnimacaoService;
+import br.usp.icmc.gustavoaguiar.equipe.montagem.EquipeMontagemEntity;
+import br.usp.icmc.gustavoaguiar.equipe.montagem.EquipeMontagemService;
 import br.usp.icmc.gustavoaguiar.library.ResourceNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +12,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/equipe_montagem")
 public class EquipeMontagemController {
     @Autowired
-    private EquipeAnimacaoService equipeMontagemService;
+    private EquipeMontagemService equipeMontagemService;
 
     @GetMapping("/{cnpj}")
-    public EquipeAnimacaoEntity get(@PathVariable("cnpj") String cnpj) {
+    public EquipeMontagemEntity get(@PathVariable("cnpj") String cnpj) {
         return equipeMontagemService.get(cnpj);
     }
 
@@ -28,7 +28,7 @@ public class EquipeMontagemController {
     }
 
     @PutMapping("/{cnpj}")
-    public ResponseEntity put(@PathVariable("cnpj") String cnpj, @RequestBody EquipeAnimacaoEntity equipeMontagemEntity) {
+    public ResponseEntity put(@PathVariable("cnpj") String cnpj, @RequestBody EquipeMontagemEntity equipeMontagemEntity) {
         equipeMontagemEntity.setCnpj(cnpj);
         if (!equipeMontagemService.update(equipeMontagemEntity)) {
             throw new ResourceNotFound("Equipe de Animacao not found");
@@ -37,8 +37,8 @@ public class EquipeMontagemController {
     }
 
     @PostMapping
-    public ResponseEntity post(@RequestBody EquipeAnimacaoEntity equipeMontagemEntity) {
-        EquipeAnimacaoEntity result = equipeMontagemService.create(equipeMontagemEntity);
+    public ResponseEntity post(@RequestBody EquipeMontagemEntity equipeMontagemEntity) {
+        EquipeMontagemEntity result = equipeMontagemService.create(equipeMontagemEntity);
         return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getCnpj()).toUri()).build();
     }
 }

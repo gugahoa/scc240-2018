@@ -32,4 +32,9 @@ public class BuffetRepository extends AbstractRepository<BuffetEntity> {
     public boolean delete(Timestamp festa) {
         return update(DELETE_BUFFET, ImmutableMap.of("festa", festa)) == 1;
     }
+
+    private final String HIRE_BANDA = "INSERT INTO palco(banda, buffet, montagem) SELECT :banda, :buffet, cnpj as montagem FROM montagem_palco ORDER BY random() LIMIT 1;";
+    public boolean hireBanda(Timestamp buffet, String banda) {
+        return update(HIRE_BANDA, ImmutableMap.of("buffet", buffet, "banda", banda)) == 1;
+    }
 }

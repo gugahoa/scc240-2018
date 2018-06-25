@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Service
@@ -41,5 +42,9 @@ public class BuffetService {
     @Transactional
     public boolean delete(Timestamp festa) {
         return buffetRepository.delete(festa) && festaRepository.delete(festa);
+    }
+
+    public boolean hireBanda(Timestamp festa, String banda) {
+        return buffetRepository.hireBanda(festa, banda);
     }
 }
