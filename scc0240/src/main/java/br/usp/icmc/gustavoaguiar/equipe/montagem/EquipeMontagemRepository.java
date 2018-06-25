@@ -20,11 +20,11 @@ public class EquipeMontagemRepository extends AbstractRepository<EquipeMontagemE
         return equipeMontagemEntity;
     }
 
-    private final String GET_EMPRESA_FANASIA = "SELECT * FROM equipe_montagem as ef, terceirizados as t WHERE ef.cnpj = :cnpj AND t.cnpj = :cnpj";
+    private final String GET_EQUIPE_MONTAGEM = "SELECT * FROM equipe_montagem as ef, terceirizados as t WHERE ef.cnpj = :cnpj AND t.cnpj = :cnpj";
     public EquipeMontagemEntity get(String cnpj) {
-        EquipeMontagemEntity entity = query(GET_EMPRESA_FANASIA, ImmutableMap.of("cnpj", cnpj));
+        EquipeMontagemEntity entity = query(GET_EQUIPE_MONTAGEM, ImmutableMap.of("cnpj", cnpj));
         if (entity == null) {
-            throw new ResourceNotFound("Empresa de Fantasia not found");
+            throw new ResourceNotFound("Equipe de Montagem not found");
         }
 
         return entity;

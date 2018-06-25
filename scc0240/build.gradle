@@ -33,4 +33,4 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-mainClassName = 'Main'
+mainClassName = 'br.usp.icmc.gustavoaguiar.Main'

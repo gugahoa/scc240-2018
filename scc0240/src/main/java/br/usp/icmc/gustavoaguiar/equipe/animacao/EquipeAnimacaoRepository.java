@@ -24,7 +24,7 @@ public class EquipeAnimacaoRepository extends AbstractRepository<EquipeAnimacaoE
     public EquipeAnimacaoEntity get(String cnpj) {
         EquipeAnimacaoEntity entity = query(GET_EMPRESA_FANASIA, ImmutableMap.of("cnpj", cnpj));
         if (entity == null) {
-            throw new ResourceNotFound("Empresa de Fantasia not found");
+            throw new ResourceNotFound("Equipe de Animacao not found");
         }
 
         return entity;

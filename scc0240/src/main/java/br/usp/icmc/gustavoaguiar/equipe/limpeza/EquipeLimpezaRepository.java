@@ -27,7 +27,7 @@ public class EquipeLimpezaRepository extends AbstractRepository<EquipeLimpezaEnt
     public EquipeLimpezaEntity get(String cnpj) {
         EquipeLimpezaEntity entity = query(GET_EQUIPE_LIMPEZA, ImmutableMap.of("cnpj", cnpj));
         if (entity == null) {
-            throw new ResourceNotFound("Empresa de Fantasia not found");
+            throw new ResourceNotFound("Equipe de Limpeza not found");
         }
 
         return entity;
