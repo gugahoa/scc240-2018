@@ -2,7 +2,8 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Table from '../../components/Table';
+import TableComponent from '../../components/Table';
+import FormComponent from '../../components/Form';
 
 class CRUD extends React.Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class CRUD extends React.Component {
     const { test } = this.state;
     return (
       <div>
-        <h1>{test}</h1>
-        <Table />
+        <TableComponent />
+        <FormComponent />
       </div>
     );
   }
