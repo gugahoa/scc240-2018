@@ -1,203 +1,129 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import './form.css';
+
 const dataDescription = {
-    first_name: {
-        label: 'First Name',
-        field: {
-          name: 'firstName',
-          placeholder: 'First Name'
-        }
-    },
-    last_name: {
-        label: 'Last Name',
-        field: {
-          name: 'lastName',
-          placeholder: 'Last Name'
-        }
-    },
-    company_name:{
-        label: 'Company Name',
-        field: {
-          name: 'companyName',
-          placeholder: 'Company Name'
-        }
-    },
-    address: {
-        label: 'Address',
-        field: {
-          name: 'address',
-          placeholder: 'Address'
-        }
-    },
-    state:{
-        label: 'Last Name',
-        field: {
-          name: 'lastName',
-          placeholder: 'Last Name'
-        }
-    },
-    post: {
-        label: 'Post',
-        field: {
-          name: 'post',
-          placeholder: 'Post'
-        }
-    },
-    city: {
-        label: 'Last Name',
-        field: {
-          name: 'lastName',
-          placeholder: 'Last Name'
-        }
-    },
-    phone1:{
-        label: 'Last Name',
-        field: {
-          name: 'lastName',
-          placeholder: 'Last Name'
-        }
-    },
-    phone2: {
-        label: 'Last Name',
-        field: {
-          name: 'lastName',
-          placeholder: 'Last Name'
-        }
-    },
-    email: {
-        label: 'Last Name',
-        field: {
-          name: 'lastName',
-          placeholder: 'Last Name'
-        }
-    },
-    web: {
-        label: 'Last Name',
-        field: {
-          name: 'lastName',
-          placeholder: 'Last Name'
-        }
+  first_name: {
+    label: 'First Name',
+    field: {
+      name: 'firstName',
+      placeholder: 'First Name'
     }
-}
-const renderFormField = (key, value) => (
-  <div>
-    <label>First Name</label>
+  },
+  last_name: {
+    label: 'Last Name',
+    field: {
+      name: 'lastName',
+      placeholder: 'Last Name'
+    }
+  },
+  company_name: {
+    label: 'Company Name',
+    field: {
+      name: 'companyName',
+      placeholder: 'Company Name'
+    }
+  },
+  address: {
+    label: 'Address',
+    field: {
+      name: 'address',
+      placeholder: 'Address'
+    }
+  },
+  state: {
+    label: 'State',
+    field: {
+      name: 'state',
+      placeholder: 'State'
+    }
+  },
+  post: {
+    label: 'Post',
+    field: {
+      name: 'post',
+      placeholder: 'Post'
+    }
+  },
+  city: {
+    label: 'City',
+    field: {
+      name: 'city',
+      placeholder: 'City'
+    }
+  },
+  phone1: {
+    label: 'Phone1',
+    field: {
+      name: 'phone1',
+      placeholder: 'Phone1'
+    }
+  },
+  phone2: {
+    label: 'Phone2',
+    field: {
+      name: 'phone2',
+      placeholder: 'Phone2'
+    }
+  },
+  email: {
+    label: 'Email',
+    field: {
+      name: 'email',
+      placeholder: 'Email'
+    }
+  },
+  web: {
+    label: 'Web',
+    field: {
+      name: 'web',
+      placeholder: 'Web'
+    }
+  }
+};
+
+const renderFormField = (field, index) => (
+  <div className="form-field" key={index}>
+    <label>{dataDescription[field].label}</label>
     <div>
       <Field
-        name="firstName"
-        component="input"
-        type="text"
-        placeholder="First Name"
+        name={dataDescription[field].field.name}
+        component={dataDescription[field].field.component || 'input'}
+        type={dataDescription[field].field.type || 'text'}
+        placeholder={dataDescription[field].field.placeholder}
       />
     </div>
   </div>
-  <div>
-)
+);
 
 
 const FormComponent = (props) => {
   const {
     handleSubmit, pristine, reset, submitting
   } = props;
+
+  console.log(Object.keys(dataDescription));
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>First Name</label>
-        <div>
-          <Field
-            name="firstName"
-            component="input"
-            type="text"
-            placeholder="First Name"
-          />
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className="form">
+          {Object.keys(dataDescription).map(renderFormField)}
         </div>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <div>
-          <Field
-            name="lastName"
-            component="input"
-            type="text"
-            placeholder="Last Name"
-          />
+        <div className="form-btns">
+          <button className="form-btn" type="submit" disabled={pristine || submitting}>
+            OK
+          </button>
+          <button className="form-btn" type="button" disabled={pristine || submitting} onClick={reset}>
+            Limpar
+          </button>
         </div>
-      </div>
-      <div>
-        <label>Email</label>
-        <div>
-          <Field
-            name="email"
-            component="input"
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Sex</label>
-        <div>
-          <label>
-            <Field
-              name="sex"
-              component="input"
-              type="radio"
-              value="male"
-            />{' '}
-            Male
-          </label>
-          <label>
-            <Field
-              name="sex"
-              component="input"
-              type="radio"
-              value="female"
-            />{' '}
-            Female
-          </label>
-        </div>
-      </div>
-      <div>
-        <label>Favorite Color</label>
-        <div>
-          <Field name="favoriteColor" component="select">
-            <option />
-            <option value="ff0000">Red</option>
-            <option value="00ff00">Green</option>
-            <option value="0000ff">Blue</option>
-          </Field>
-        </div>
-      </div>
-      <div>
-        <label htmlFor="employed">Employed</label>
-        <div>
-          <Field
-            name="employed"
-            id="employed"
-            component="input"
-            type="checkbox"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Notes</label>
-        <div>
-          <Field name="notes" component="textarea" />
-        </div>
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>
-          Submit
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
-  };
-  
+};
+
 export default reduxForm({
-      form: 'CRUD' // a unique identifier for this form
+  form: 'CRUD' // a unique identifier for this form
 })(FormComponent);

@@ -1,0 +1,48 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  padding: 10px;
+
+  /* border: 5px;
+  border-style: dotted;
+  border-color: red; */
+}
+
+.form-field {
+  /* inherits from .form */
+
+  width: 220px; 
+  margin: 8px;
+
+}
+
+.form-btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  
+  margin-right: 10%;
+  font-size: 1.3em;
+  padding-bottom: 5%;
+  
+  /* border: 3px;
+  border-color: crimson;
+  border-style: dotted; */
+  /* border: 3px;
+  border-color: green;
+  border-style: dotted; */
+}
+
+.form-btn {
+  /* inherits from .form-btn */
+  margin: 6px;
+
+  /* border: 2px;
+  border-color: crimson;
+  border-style: dotted; */
+}
