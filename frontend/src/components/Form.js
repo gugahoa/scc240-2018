@@ -106,24 +106,30 @@ const FormComponent = (props) => {
   console.log(Object.keys(dataDescription));
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="form">
-          {Object.keys(dataDescription).map(renderFormField)}
-        </div>
-        <div className="form-btns">
-          <button className="form-btn" type="submit" disabled={pristine || submitting}>
-            OK
-          </button>
-          <button className="form-btn" type="button" disabled={pristine || submitting} onClick={reset}>
-            Limpar
-          </button>
-        </div>
-      </form>
+    <div className="form-container">
+        <button hidden={false} className="form-btns form-create-btn" type="button">
+          Limpar
+        </button>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div className="form">
+            {Object.keys(dataDescription).map(renderFormField)}
+          </div>
+          <div className="form-btns">
+            <button className="form-btn" type="submit" disabled={pristine || submitting}>
+              OK
+            </button>
+            <button className="form-btn" type="button" disabled={pristine || submitting} onClick={reset}>
+              Limpar
+            </button>
+          </div>
+        </form>
+      </div> 
     </div>
   );
 };
 
+// TODO: remove reduxForm from here, use only when instantiating
 export default reduxForm({
   form: 'CRUD' // a unique identifier for this form
 })(FormComponent);
